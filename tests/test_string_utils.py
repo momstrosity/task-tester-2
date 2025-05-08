@@ -10,9 +10,15 @@ def test_reverse_empty_string():
     """Test reversal of an empty string."""
     assert reverse_string("") == ""
 
+def test_reverse_with_spaces():
+    """Test reversal of string with spaces."""
+    assert reverse_string("hello world") == "dlrow olleh"
+    assert reverse_string("  spaced  ") == "  decaps  "
+
 def test_reverse_special_characters():
     """Test reversal of string with special characters."""
     assert reverse_string("a1b2c3!@#") == "#@!3c2b1a"
+    assert reverse_string("hello, world!") == "!dlrow ,olleh"
 
 def test_reverse_unicode_string():
     """Test reversal of unicode string."""
