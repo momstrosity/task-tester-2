@@ -32,3 +32,7 @@ def test_invalid_input_type():
     
     with pytest.raises(TypeError, match="Input must be a string"):
         reverse_string(None)
+
+def test_reverse_with_mixed_characters():
+    """Test reversing a string with mixed character types."""
+    assert reverse_string("Hello, World! 123") == "321 !dlroW ,olleH"
