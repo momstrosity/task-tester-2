@@ -1,6 +1,6 @@
 def reverse_string(input_string):
     """
-    Reverse a given string.
+    Reverse a given string using manual character iteration.
 
     Args:
         input_string (str): The string to be reversed.
@@ -15,5 +15,9 @@ def reverse_string(input_string):
     if not isinstance(input_string, str):
         raise TypeError("Input must be a string")
     
-    # Return the reversed string
-    return input_string[::-1]
+    # Manual string reversal
+    reversed_str = ""
+    for char in input_string:
+        reversed_str = char + reversed_str
+    
+    return reversed_str
