@@ -11,9 +11,9 @@ def reverse_string(input_str):
     Raises:
         TypeError: If the input is not a string.
     """
-    # Check if input is a string
+    # Validate input is a string
     if not isinstance(input_str, str):
         raise TypeError("Input must be a string")
     
-    # Return the reversed string
+    # Return the reversed string using slice notation
     return input_str[::-1]
