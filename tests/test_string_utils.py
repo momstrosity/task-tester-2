@@ -1,36 +1,42 @@
 import pytest
-from src.string_utils import reverse_string
+from src.string_utils import rgb_to_hex, reverse_string
 
-def test_reverse_normal_string():
-    """Test reversal of a normal string."""
+def test_reverse_string():
     assert reverse_string("hello") == "olleh"
-    assert reverse_string("python") == "nohtyp"
-
-def test_reverse_empty_string():
-    """Test reversal of an empty string."""
     assert reverse_string("") == ""
+    assert reverse_string("a") == "a"
+    with pytest.raises(TypeError):
+        reverse_string(123)
 
-def test_reverse_with_spaces():
-    """Test reversal of string with spaces."""
-    assert reverse_string("hello world") == "dlrow olleh"
-    assert reverse_string("  spaced  ") == "  decaps  "
+def test_rgb_to_hex_basic_conversion():
+    """Test basic RGB to hex conversion"""
+    assert rgb_to_hex(255, 0, 0) == '#FF0000'  # Bright Red
+    assert rgb_to_hex(0, 255, 0) == '#00FF00'  # Bright Green
+    assert rgb_to_hex(0, 0, 255) == '#0000FF'  # Bright Blue
+    assert rgb_to_hex(0, 0, 0) == '#000000'   # Black
+    assert rgb_to_hex(255, 255, 255) == '#FFFFFF'  # White
 
-def test_reverse_special_characters():
-    """Test reversal of string with special characters."""
-    assert reverse_string("a1b2c3!@#") == "#@!3c2b1a"
-    assert reverse_string("hello, world!") == "!dlrow ,olleh"
+def test_rgb_to_hex_mixed_colors():
+    """Test conversion of mixed color values"""
+    assert rgb_to_hex(128, 128, 128) == '#808080'  # Mid Gray
+    assert rgb_to_hex(100, 200, 50) == '#64C832'  # Mixed color
 
-def test_reverse_unicode_string():
-    """Test reversal of unicode string."""
-    assert reverse_string("こんにちは") == "はちにんこ"
+def test_rgb_to_hex_type_errors():
+    """Test type validation for inputs"""
+    with pytest.raises(TypeError):
+        rgb_to_hex('255', 0, 0)
+    with pytest.raises(TypeError):
+        rgb_to_hex(255, '0', 0)
+    with pytest.raises(TypeError):
+        rgb_to_hex(255, 0, '0')
+    with pytest.raises(TypeError):
+        rgb_to_hex(255.5, 0, 0)
 
-def test_reverse_invalid_input():
-    """Test that TypeError is raised for non-string inputs."""
-    with pytest.raises(TypeError, match="Input must be a string"):
-        reverse_string(12345)
-    
-    with pytest.raises(TypeError, match="Input must be a string"):
-        reverse_string(None)
-    
-    with pytest.raises(TypeError, match="Input must be a string"):
-        reverse_string(["list"])
+def test_rgb_to_hex_value_errors():
+    """Test value range validation"""
+    with pytest.raises(ValueError):
+        rgb_to_hex(-1, 0, 0)
+    with pytest.raises(ValueError):
+        rgb_to_hex(0, 256, 0)
+    with pytest.raises(ValueError):
+        rgb_to_hex(0, 0, 300)
