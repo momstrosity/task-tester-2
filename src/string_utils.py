@@ -1,5 +1,26 @@
 def reverse_string(input_string):
-    """\n    Reverse a given string using manual character iteration.\n\n    Args:\n        input_string (str): The string to be reversed.\n\n    Returns:\n        str: The reversed string.\n\n    Raises:\n        TypeError: If the input is not a string.\n    """\n    # Check if input is a string\n    if not isinstance(input_string, str):\n        raise TypeError("Input must be a string")\n    \n    # Manual string reversal\n    reversed_str = ""\n    for char in input_string:\n        reversed_str = char + reversed_str\n    \n    return reversed_str
+    """
+    Reverse a given string using manual character iteration.
+
+    Args:
+        input_string (str): The string to be reversed.
+
+    Returns:
+        str: The reversed string.
+
+    Raises:
+        TypeError: If the input is not a string.
+    """
+    # Check if input is a string
+    if not isinstance(input_string, str):
+        raise TypeError("Input must be a string")
+    
+    # Manual string reversal
+    reversed_str = ""
+    for char in input_string:
+        reversed_str = char + reversed_str
+    
+    return reversed_str
 
 def rgb_to_hex(r, g, b):
     """
