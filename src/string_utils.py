@@ -50,3 +50,34 @@ def rgb_to_hex(r, g, b):
     hex_color = '#{:02X}{:02X}{:02X}'.format(r, g, b)
     
     return hex_color
+
+def flatten_list(nested_list):
+    """
+    Recursively flatten a nested list of arbitrary depth.
+
+    Args:
+        nested_list (list): A list that may contain nested lists
+
+    Returns:
+        list: A flattened version of the input list
+
+    Raises:
+        TypeError: If the input is not a list
+    """
+    # Validate input is a list
+    if not isinstance(nested_list, list):
+        raise TypeError("Input must be a list")
+    
+    # Initialize the flattened list
+    flattened = []
+    
+    # Recursive flattening
+    for item in nested_list:
+        # If the item is a list, recursively flatten it
+        if isinstance(item, list):
+            flattened.extend(flatten_list(item))
+        else:
+            # If not a list, simply append the item
+            flattened.append(item)
+    
+    return flattened
